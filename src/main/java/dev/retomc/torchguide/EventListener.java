@@ -6,6 +6,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.neoforged.api.distmarker.Dist;
@@ -48,28 +49,30 @@ public final class EventListener {
     public static void onTick(ClientTickEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
         TRACKER.setLevel(minecraft.level);
-        if (minecraft.player == null || minecraft.level == null) return;
+        Player player = minecraft.player;
+        if (player == null || minecraft.level == null) return;
 
         while (TOGGLE.consumeClick()) {
-            minecraft.player.displayClientMessage(Component.translatable(
+            player.displayClientMessage(Component.translatable(
                 TRACKER.toggle() ? "message.torchguide.enabled" : "message.torchguide.disabled"
             ), true);
         }
 
-        TRACKER.tick(minecraft.player.blockPosition(), holdsTorch(minecraft), Config.SPACING.get(), Config.RANGE.get());
+        TRACKER.tick(player.blockPosition(), holdsTorch(player), Config.SPACING.get(), Config.RANGE.get());
     }
 
-    private static boolean holdsTorch(Minecraft minecraft) {
-        return minecraft.player.getMainHandItem().is(Items.TORCH)
-            || minecraft.player.getOffhandItem().is(Items.TORCH);
+    private static boolean holdsTorch(Player player) {
+        return player.getMainHandItem().is(Items.TORCH)
+            || player.getOffhandItem().is(Items.TORCH);
     }
 
     @SubscribeEvent
     public static void onRender(RenderLevelStageEvent event) {
         Minecraft minecraft = Minecraft.getInstance();
+        Player player = minecraft.player;
         List<BlockPos> guides = TRACKER.guides();
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES || guides.isEmpty()
-            || !TRACKER.enabled() || minecraft.player == null || !holdsTorch(minecraft)) return;
+            || !TRACKER.enabled() || player == null || !holdsTorch(player)) return;
 
         TorchGuideRenderer.render(event, minecraft, guides);
     }

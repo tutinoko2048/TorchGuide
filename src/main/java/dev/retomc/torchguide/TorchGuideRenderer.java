@@ -7,8 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -21,7 +21,7 @@ final class TorchGuideRenderer {
         PoseStack poseStack = event.getPoseStack();
         Vec3 camera = event.getCamera().getPosition();
         var buffers = minecraft.renderBuffers().bufferSource();
-        RenderType renderType = RenderType.entityTranslucentEmissive(TextureAtlas.LOCATION_BLOCKS);
+        RenderType renderType = RenderType.entityTranslucentEmissive(InventoryMenu.BLOCK_ATLAS);
         float[] previousColor = RenderSystem.getShaderColor().clone();
         RenderSystem.setShaderColor(1, 1, 1, (float) (1.0 - Config.TRANSPARENCY.get()));
         try {

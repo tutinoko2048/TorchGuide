@@ -76,7 +76,7 @@ final class TorchGuideTracker {
                 int dz = z - playerPos.getZ();
                 if (dx * dx + dz * dz > range * range) continue;
                 candidate.set(x, playerPos.getY(), z);
-                if (!level.hasChunkAt(candidate)) continue;
+                if (!level.getChunkSource().hasChunk(x >> 4, z >> 4)) continue;
 
                 for (int y = topY; y >= bottomY; y--) {
                     candidate.set(x, y, z);

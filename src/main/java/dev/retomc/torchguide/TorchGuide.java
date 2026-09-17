@@ -2,6 +2,7 @@ package dev.retomc.torchguide;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import javax.annotation.Nonnull;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -29,7 +30,8 @@ public class TorchGuide {
         }
 
         @Override
-        protected Element createDoubleValue(String key, ValueSpec spec, Supplier<Double> source, Consumer<Double> target) {
+        protected Element createDoubleValue(@Nonnull String key, @Nonnull ValueSpec spec,
+                                            @Nonnull Supplier<Double> source, @Nonnull Consumer<Double> target) {
             if (!key.equals("transparency")) return super.createDoubleValue(key, spec, source, target);
             return new Element(getTranslationComponent(key), getTooltipComponent(key, null),
                 new OptionInstance<>(getTranslationKey(key), getTooltip(key, spec.getRange()),
