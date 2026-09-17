@@ -7,15 +7,15 @@ public final class Config {
 
     public static final ModConfigSpec.IntValue SPACING = BUILDER
         .comment("Number of empty blocks between torch guides")
-        .defineInRange("spacing", 4, 1, 32);
+        .defineInRange("spacing", 4, 1, 16);
 
     public static final ModConfigSpec.DoubleValue TRANSPARENCY = BUILDER
         .comment("Torch guide transparency: 0.1 is almost opaque, 1.0 is invisible")
-        .defineInRange("transparency", 0.6, 0.1, 1.0);
+        .defineInRange("transparency", 0.7, 0.1, 1.0);
 
     public static final ModConfigSpec.IntValue RANGE = BUILDER
         .comment("Horizontal guide render radius in blocks")
-        .defineInRange("range", 32, 4, 64);
+        .defineInRange("range", 32, 8, 64);
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
