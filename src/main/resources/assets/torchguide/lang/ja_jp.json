@@ -1,0 +1,11 @@
+{
+  "key.categories.torchguide": "松明ガイド",
+  "key.torchguide.toggle": "松明ガイドの切り替え",
+  "message.torchguide.enabled": "松明ガイド: ON",
+  "message.torchguide.disabled": "松明ガイド: OFF",
+  "torchguide.configuration.spacing": "ガイド間のブロック数",
+  "torchguide.configuration.transparency": "透明度",
+  "torchguide.configuration.transparency.tooltip": "0.1でほぼ不透明、1.0で完全に透明。0.1刻み",
+  "torchguide.configuration.range": "ガイドの描画半径",
+  "torchguide.configuration.range.tooltip": "プレイヤーからの水平方向の距離（ブロック）"
+}

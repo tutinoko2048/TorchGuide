@@ -1,0 +1,11 @@
+{
+  "key.categories.torchguide": "Torch Guide",
+  "key.torchguide.toggle": "Toggle torch guides",
+  "message.torchguide.enabled": "Torch guides enabled",
+  "message.torchguide.disabled": "Torch guides disabled",
+  "torchguide.configuration.spacing": "Blocks between guides",
+  "torchguide.configuration.transparency": "Transparency",
+  "torchguide.configuration.transparency.tooltip": "0.1 = almost opaque, 1.0 = invisible; steps of 0.1",
+  "torchguide.configuration.range": "Guide render radius",
+  "torchguide.configuration.range.tooltip": "Horizontal distance in blocks from the player"
+}
