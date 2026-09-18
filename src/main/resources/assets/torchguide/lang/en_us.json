@@ -4,8 +4,11 @@
   "message.torchguide.enabled": "Torch guides enabled",
   "message.torchguide.disabled": "Torch guides disabled",
   "torchguide.configuration.spacing": "Blocks between guides",
+  "torchguide.configuration.spacing.tooltip": "Number of empty blocks between guides. Default: 4",
   "torchguide.configuration.transparency": "Transparency",
-  "torchguide.configuration.transparency.tooltip": "0.1 = almost opaque, 1.0 = invisible",
+  "torchguide.configuration.transparency.tooltip": "0.1 = almost opaque, 1.0 = invisible. Default: 0.7",
   "torchguide.configuration.range": "Guide render radius",
-  "torchguide.configuration.range.tooltip": "Horizontal distance in blocks from the player"
+  "torchguide.configuration.range.tooltip": "Horizontal distance in blocks from the player. Default: 32",
+  "torchguide.configuration.undo_window_ticks": "Undo window (ticks)",
+  "torchguide.configuration.undo_window_ticks.tooltip": "Restore the previous guide origin if a newly placed torch disappears within this time. Default: 20"
 }

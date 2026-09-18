@@ -10,10 +10,12 @@ import net.minecraft.world.level.block.state.BlockState;
 final class TorchGuideTracker {
     private Level level;
     private BlockPos origin;
-    private BlockPos pendingPlacement;
+    private Placement pendingPlacement;
+    private Placement undoPlacement;
+    private BlockPos previousOrigin;
     private List<BlockPos> guides = List.of();
     private boolean enabled;
-    private int ticks;
+    private long ticks;
 
     boolean enabled() {
         return enabled;
@@ -33,20 +35,38 @@ final class TorchGuideTracker {
         this.level = level;
         origin = null;
         pendingPlacement = null;
+        undoPlacement = null;
+        previousOrigin = null;
         guides = List.of();
+        ticks = 0;
     }
 
-    void queuePlacement(BlockPos pos) {
+    void queuePlacement(BlockPos pos, int undoWindowTicks) {
         if (enabled && !level.getBlockState(pos).is(Blocks.TORCH)) {
-            pendingPlacement = pos.immutable();
+            pendingPlacement = new Placement(pos.immutable(), ticks, undoWindowTicks);
         }
     }
 
     void tick(BlockPos playerPos, boolean holdsTorch, int gap, int range) {
+        ticks++;
         boolean originChanged = false;
+        if (undoPlacement != null) {
+            if (ticks - undoPlacement.createdAtTick() > undoPlacement.undoWindowTicks()) {
+                undoPlacement = null;
+                previousOrigin = null;
+            } else if (level.hasChunkAt(undoPlacement.pos())
+                && !level.getBlockState(undoPlacement.pos()).is(Blocks.TORCH)) {
+                origin = previousOrigin;
+                originChanged = true;
+                undoPlacement = null;
+                previousOrigin = null;
+            }
+        }
         if (pendingPlacement != null) {
-            if (enabled && level.getBlockState(pendingPlacement).is(Blocks.TORCH)) {
-                origin = pendingPlacement;
+            if (enabled && level.getBlockState(pendingPlacement.pos()).is(Blocks.TORCH)) {
+                previousOrigin = origin;
+                origin = pendingPlacement.pos();
+                undoPlacement = pendingPlacement;
                 originChanged = true;
             }
             pendingPlacement = null;
@@ -54,10 +74,12 @@ final class TorchGuideTracker {
 
         if (!enabled || origin == null || !holdsTorch) {
             guides = List.of();
-        } else if (originChanged || ++ticks % 5 == 0) {
+        } else if (originChanged || ticks % 5 == 0) {
             guides = findGuides(playerPos, gap + 1, range);
         }
     }
+
+    private record Placement(BlockPos pos, long createdAtTick, int undoWindowTicks) {}
 
     private List<BlockPos> findGuides(BlockPos playerPos, int spacing, int range) {
         int minX = playerPos.getX() - range;

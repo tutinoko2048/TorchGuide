@@ -17,6 +17,10 @@ public final class Config {
         .comment("Horizontal guide render radius in blocks")
         .defineInRange("range", 32, 8, 64);
 
+    public static final ModConfigSpec.IntValue UNDO_WINDOW_TICKS = BUILDER
+        .comment("Ticks to restore the previous guide origin when a newly placed torch disappears")
+        .defineInRange("undo_window_ticks", 20, 10, 100);
+
     public static final ModConfigSpec SPEC = BUILDER.build();
 
     private Config() {}

@@ -41,7 +41,7 @@ public final class EventListener {
             && event.getItemStack().is(Items.TORCH)) {
             TRACKER.setLevel(minecraft.level);
             BlockPos pos = new BlockPlaceContext(event.getUseOnContext()).getClickedPos();
-            TRACKER.queuePlacement(pos);
+            TRACKER.queuePlacement(pos, Config.UNDO_WINDOW_TICKS.get());
         }
     }
 

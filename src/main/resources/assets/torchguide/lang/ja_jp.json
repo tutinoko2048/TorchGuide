@@ -4,8 +4,11 @@
   "message.torchguide.enabled": "松明ガイド: ON",
   "message.torchguide.disabled": "松明ガイド: OFF",
   "torchguide.configuration.spacing": "ガイド間のブロック数",
+  "torchguide.configuration.spacing.tooltip": "ガイド間のブロック数。初期値: 4",
   "torchguide.configuration.transparency": "透明度",
-  "torchguide.configuration.transparency.tooltip": "0.1でほぼ不透明、1.0で完全に透明",
+  "torchguide.configuration.transparency.tooltip": "0.1でほぼ不透明、1.0で完全に透明。初期値: 0.7",
   "torchguide.configuration.range": "ガイドの描画半径",
-  "torchguide.configuration.range.tooltip": "プレイヤーからの水平方向の距離（ブロック）"
+  "torchguide.configuration.range.tooltip": "プレイヤーからの水平方向の距離（ブロック）。初期値: 32",
+  "torchguide.configuration.undo_window_ticks": "基準を戻せる時間（tick）",
+  "torchguide.configuration.undo_window_ticks.tooltip": "設置した松明がこの時間内に消えると元の基準に戻します。初期値: 20"
 }
