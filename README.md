@@ -28,11 +28,14 @@ Minecraftで松明を置く間隔を確認できるNeoForge用のクライアン
 
 ## ビルド
 
+[Stonecutter](https://stonecutter.kikugie.dev/)で複数のMinecraftバージョンを1つのソースからビルドしています。
+対応バージョンは`settings.gradle.kts`、バージョンごとの依存関係は`stonecutter.properties.toml`で管理しています。
+
 ```text
-gradle build
+./gradlew buildAndCollect
 ```
 
-生成されたJarは`build/libs`に出力されます。
+全バージョンのJarが`build/libs`に出力されます。
 
 ## ライセンス
 
