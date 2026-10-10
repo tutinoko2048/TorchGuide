@@ -1,0 +1,18 @@
+# Shared mod properties. Per-version sections below override or add to these.
+mod.id = "torchguide"
+mod.name = "Torch Guide"
+mod.license = "MIT"
+mod.version = "1.2.0"
+mod.group = "dev.retomc"
+mod.authors = "tutinoko2048"
+mod.description = "Client-side torch spacing guide for Minecraft and NeoForge."
+
+["1.21.1"]
+# Version ranges written into neoforge.mods.toml
+mod.mc_compat = "[1.21.1,1.21.2)"
+deps.neo_loader = "21.1.250"
+deps.neo_compat = "[21.1,21.2)"
+deps.loader_compat = "[4,)"
+# Optional: omit for versions without Parchment mappings
+deps.parchment_minecraft = "1.21.11"
+deps.parchment_mappings = "2025.12.20"
